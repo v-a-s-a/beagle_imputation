@@ -13,6 +13,8 @@ Image Credit: Bryan Howie here at the Univeristy of Chicago. <http://home.uchica
 
   It is possible that we have to insert a LiftOver step into the workflow in order to convert data from b36 to b37.
 
+  Have to refine the parallelization scheme.
+
 ## Preprocessing:
   * Split reference by chromosome
   * Split input data by chromosome
