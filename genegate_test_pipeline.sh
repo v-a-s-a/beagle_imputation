@@ -7,37 +7,43 @@
 
 ### CONSTANTS
 ## PLINK files for the raw data
-bed='' ## binary genotype data
-bim='' ## marker information
-fam='' ## sample information
+bed='/nas40t2/jason/projects/Paper2013/mexico.city.2/datasets/mexico.city.2_cleaned_chr22top1K.bed' ## binary genotype data
+bim='/nas40t2/jason/projects/Paper2013/mexico.city.2/datasets/mexico.city.2_cleaned_chr22top1K.bim' ## marker information
+fam='/nas40t2/jason/projects/Paper2013/mexico.city.2/datasets/mexico.city.2_cleaned_chr22top1K.fam' ## sample information
 
 ## 1000G phased reference panel
-map='' ## recombination map
-haps='' ## known haplotypes
-legend='' ## marker information
-gens='' ## CHIAMO genotype data
-strand='' ## strand orientation for .gens markers
-
+map='/nas40t0/vasya/impute2_reference_data/genetic_map_chr22_combined_b37.txt' ## recombination map
+haps='/nas40t0/vasya/impute2_reference_data/ALL.chr22.integrated_phase1_v3.20101123.snps_indels_svs.genotypes.nosing.haplotypes' ## known haplotypes
+legend='/nas40t0/vasya/impute2_reference_data/ALL.chr22.integrated_phase1_v3.20101123.snps_indels_svs.genotypes.nosing.legend' ## marker information
+gens='data/subset_test.gens' ## CHIAMO genotype data
+sample='data/subset_test.sample' ## sample file
+#strand='' ## strand orientation for .gens markers
+impute_output='data/subset_test' ## raw output of impute2
 
 ### WORKFLOW
 ## Convert binary PLINK to PED/MAP
-plink --bfile ${bed%%.bed} --recode --out tmp
+plink --bfile ${bed%%.bed} --recode --out ${bed%%.bed}
 
 ## Convert to GEN/SAMPLE format
-gtool -P --ped myPlinkTextData.ped --map myPlinkTextData.map --og myGtoolTextData.gen --os myGtoolTextData.sample
+gtool -P --ped ${bed%%.bed}.ped --map ${bed%%.bed}.map --og ${gens} --os ${sample}
 
 ## TODO: make a strand orientation file
 
 ## Split chromosome files into genomic block files
-
+\
 ## Phase and impute over each block
 impute2 \
- -m ./Example/example.chr22.map \
- -h ./Example/example.chr22.1kG.haps \
- -l ./Example/example.chr22.1kG.legend \
- -g ./Example/example.chr22.study.gens \
- -strand_g ./Example/example.chr22.study.strand \
+ -m ${map} \
+ -h ${haps} \
+ -l ${legend} \
+ -g ${gens} \
  -int 20.4e6 20.5e6 \
  -Ne 20000 \
- -o ./Example/example.chr22.one.phased.impute2
+ -o ${impute_output}
+# -strand_g ${stand} 
+
+## Convert IMPUTE2 output back to PLINK
+
+
+
 
