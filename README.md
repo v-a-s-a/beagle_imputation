@@ -3,6 +3,10 @@ beagle_imputation
 
 Pipeline for running imputation on Beagle.
 
+[[ imputation_schematic.png ]]
+
+Image Credit: Bryan Howie here at the Univeristy of Chicago. <http://home.uchicago.edu/~/bhowie/research.html>
+
 ## Miscellaneous Notes:
  This imputation pipeline is preliminary and has not been tested. We deceided against prephasing with SHAPEIT2, in order to simplify the overall workflow. Instead, we will allow IMPUTE2 to phase our data.
 
