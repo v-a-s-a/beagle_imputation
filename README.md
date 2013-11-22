@@ -2,8 +2,7 @@ beagle_imputation
 =================
 
 Pipeline for running imputation on Beagle.
-
-[[ imputation_schematic.png ]]
+[[/images/imputation_schematic.png]]
 
 Image Credit: Bryan Howie here at the Univeristy of Chicago. <http://home.uchicago.edu/~/bhowie/research.html>
 
