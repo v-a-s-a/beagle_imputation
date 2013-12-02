@@ -7,9 +7,10 @@
 
 ### CONSTANTS
 ## PLINK files for the raw data
-bed='/nas40t2/jason/projects/Paper2013/mexico.city.2/datasets/mexico.city.2_cleaned_chr22top1K.bed' ## binary genotype data
-bim='/nas40t2/jason/projects/Paper2013/mexico.city.2/datasets/mexico.city.2_cleaned_chr22top1K.bim' ## marker information
-fam='/nas40t2/jason/projects/Paper2013/mexico.city.2/datasets/mexico.city.2_cleaned_chr22top1K.fam' ## sample information
+baseDir='/nas40t2/jason/projects/Paper2013/mexico.city.2/datasets/'
+bed="${baseDir}mexico.city.2/datasets/mexico.city.2_cleaned_chr22top1K.bed" ## binary genotype data
+bim="${baseDir}mexico.city.2/datasets/mexico.city.2_cleaned_chr22top1K.bim" ## marker information
+fam="${baseDir}mexico.city.2/datasets/mexico.city.2_cleaned_chr22top1K.fam" ## sample information
 
 ## 1000G phased reference panel
 map='/nas40t0/vasya/impute2_reference_data/genetic_map_chr22_combined_b37.txt' ## recombination map
@@ -37,7 +38,7 @@ impute2 \
  -h ${haps} \
  -l ${legend} \
  -g ${gens} \
- -int 20.4e6 20.5e6 \
+ -int 16495833 22579801 \
  -Ne 20000 \
  -o ${impute_output}
 # -strand_g ${stand} 
