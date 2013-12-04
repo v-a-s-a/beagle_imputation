@@ -1,14 +1,14 @@
 #!/bin/bash
 
 ## 1000 genomes reference data directory
-refDataDir=""
+refDataDir="/lustre/beagle/vasya/1000g_reference"
 ## mexico city data directory
-genoDataDir=""
+genoDataDir="/lustre/beagle/vasya/mex_genotypes"
 ## output
-outputDir=""
+outputDir="/lustre/beagle/vasya/imputed_data"
 
 ## file defining genomic regions of imputation
-blockFile=""
+blockFile="${genoDataDir}/jt_5MB_blocks.txt"
 
 
 ## extract block regions defined in a file
@@ -20,17 +20,14 @@ while read line; do
 
   ## construct file references from block information
   ## genotype data
-  bed="${genoDataDir}/mexico.city.2_cleaned_chr${chr}.bed"
-  bim="${genoDataDir}/mexico.city.2_cleaned_chr${chr}.bim"
-  fam="${genoDataDir}/mexico.city.2_cleaned_chr${chr}.fam"
+  gens="${genoDataDir}/mexico.city.2_cleaned_${chr}.gens"
+  sample="${genoDataDir}/mexico.city.2_cleaned_${chr}.sample"
   ## reference data
-  map="${refDataDir}"
-  haps="${refDataDir}"
-  legend="${refDataDir}"
-  gens="${refDataDir}"
-  sample="${refDataDir}"
+  map="${refDataDir}/genetic_map_chr${chr}_combined_b37.txt"
+  haps="${refDataDir}/ALL.chr${chr}.integrated_phase1_v3.20101123.snps_indels_svs.genotypes.nosing.haplotypes"
+  legend="${refDataDir}/ALL.chr${chr}.integrated_phase1_v3.20101123.snps_indels_svs.genotypes.nosing.legend"
   ## output location
-  imputeOutput="${outputDir}/mexico.city.2.IMPUTED_chr${chr}"
+  imputeOutput="${outputDir}/mexico.city.2_cleaned_IMPUTED_chr${chr}"
 
   ## submit the command in the background
   impute2 \
