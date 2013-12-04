@@ -42,5 +42,5 @@ while read line; do
     -Ne 20000 \
     -o ${imputeOutput} &
 
-done < ${blockData}
+done < ${blockFile}
 
