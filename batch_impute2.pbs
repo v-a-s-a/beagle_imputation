@@ -1,8 +1,8 @@
 #!/bin/bash
-#PBS -l mppwidth=572
-#PBS -l walltime=24:00:00
+#PBS -l mppwidth=24
+#PBS -l walltime=48:00:00
 
 
-## request 24 nodes with 24 processes each
-aprun -n 24 -N 24 block_impute2.sh 
+## request 1 node with 24 threads each
+aprun -n 1 -d 24 -N 1 block_impute2.sh $INPUTFILE
 
