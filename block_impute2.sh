@@ -8,7 +8,7 @@ genoDataDir="/lustre/beagle/vasya/mex_genotypes"
 outputDir="/lustre/beagle/vasya/imputed_data"
 
 ## file defining genomic regions of imputation
-blockFile="${genoDataDir}/jt_5MB_blocks.txt"
+blockFile=$1
 
 
 ## extract block regions defined in a file
@@ -41,3 +41,4 @@ while read line; do
 
 done < ${blockFile}
 
+wait
