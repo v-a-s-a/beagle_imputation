@@ -1,10 +1,9 @@
 #!/bin/bash
 
 ## launch 24 parallel environments on 24 nodes.
-for i in {1..24}; do
+for i in "test"; do
 	## pass in the block file for each node.
-	blockFile="${i}"
-	qsub -v INPUTFILE="$blockFile" -N "mex.am.${i}" batch_impute2.pbs
-
+	blockFile="/lustre/beagle/vasya/mex_genotypes/chunk_${i}.txt"
+	qsub -v INPUTFILE="$blockFile" -N "mex.am.${i}" /lustre/beagle/vasya/beagle_imputation/batch_impute2.pbs
 done
 

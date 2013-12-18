@@ -1,8 +1,10 @@
 #!/bin/bash
-#PBS -l mppwidth=24
+#PBS -l mppwidth=3
 #PBS -l walltime=48:00:00
 
+echo $PBS_O_WORKDIR
+cd $PBS_O_WORKDIR
 
 ## request 1 node with 24 threads each
-aprun -n 1 -d 24 -N 1 block_impute2.sh $INPUTFILE
+aprun -n 1 -d 3 -N 1 /lustre/beagle/vasya/beagle_imputation/block_impute2.sh $INPUTFILE
 

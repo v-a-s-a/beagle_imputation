@@ -10,13 +10,12 @@ outputDir="/lustre/beagle/vasya/imputed_data"
 ## file defining genomic regions of imputation
 blockFile=$1
 
-
 ## extract block regions defined in a file
 while read line; do
   ## pull block data into variables
-  chr=$( echo $line | cut -f 1 )
-  start=$( echo $line | cut -f 2 )
-  end=$( echo $line | cut -f 3 )
+  chr=$( echo $line | cut -d ' ' -f 1 )
+  start=$( echo $line | cut -d ' ' -f 2 )
+  end=$( echo $line | cut -d ' ' -f 3 )
 
   ## construct file references from block information
   ## genotype data
@@ -27,10 +26,10 @@ while read line; do
   haps="${refDataDir}/ALL.chr${chr}.integrated_phase1_v3.20101123.snps_indels_svs.genotypes.nosing.haplotypes"
   legend="${refDataDir}/ALL.chr${chr}.integrated_phase1_v3.20101123.snps_indels_svs.genotypes.nosing.legend"
   ## output location
-  imputeOutput="${outputDir}/mexico.city.2_cleaned_IMPUTED_chr${chr}"
+  imputeOutput="${outputDir}/mexico.city.2_cleaned_IMPUTED_chr${chr}${start}"
 
   ## submit the command in the background
-  impute2 \
+  /soft/impute/2.2.2/bin/impute2 \
     -m ${map} \
     -h ${haps} \
     -l ${legend} \
