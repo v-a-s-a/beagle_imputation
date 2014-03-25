@@ -7,16 +7,22 @@ Pipeline for running imputation on Beagle.
 Image Credit: Bryan Howie here at the Univeristy of Chicago. <http://home.uchicago.edu/~/bhowie/research.html>
 
 ## Pilot Project :: Imputation in Mexican Americans
- This imputation pipeline is preliminary and has not been fully tested. Our initial dataset consisted of ~1,500 samples and ~400,000 SNPs. The reference genome was split into 5mb chunks (ask Jason for script). This repo contains a test script for genegate to make sure that everything ran appropriately.
+ This imputation pipeline is preliminary and has not been fully tested. Our initial dataset consisted of ~1,500 samples and ~400,000 SNPs. The reference genome was split into 5mb chunks (script not under version control yet). This repo contains a test script for genegate to make sure that everything ran appropriately.
+ 
+ NOTE: We tested on genegate using the branch "master" and ran on beagle using the branch "beagle". The final version of the pipeline is under the beagle branch.
 
 ## Parallelization
 
- Beagle's uses the Portable Batch System (PBS) for resource management and scheduling.
+ Take a look at the [http://wiki.ci.uchicago.edu/Beagle/](Beagle wiki) for system specs.
+ 
+ There were a few gotchas with regards to memory per node, and I'll have to detail the final scheme we used here at a later date.
 
 ## Preprocessing:
   * Split reference by chromosome
   * Split input data by chromosome
-  * match variant IDs between reference and directly typed variants
+  * Match variant IDs between reference and directly typed variants
+  * Ensure that there are no strand mismatches
+  * General genotype QC of directly typed variants
 
 ## Workflow Outline (pilot project specific):
   1. Copy reference and raw data to node.
