@@ -26,10 +26,10 @@ while read line; do
   haps="${refDataDir}/ALL.chr${chr}.integrated_phase1_v3.20101123.snps_indels_svs.genotypes.nosing.haplotypes"
   legend="${refDataDir}/ALL.chr${chr}.integrated_phase1_v3.20101123.snps_indels_svs.genotypes.nosing.legend"
   ## output location
-  imputeOutput="${outputDir}/mexico.city.2_cleaned_IMPUTED_chr${chr}${start}"
+  imputeOutput="${outputDir}/mexico.city.2_cleaned_IMPUTED_chr${chr}_${start}"
 
   ## submit the command in the background
-  /soft/impute/2.2.2/bin/impute2 \
+  time /soft/impute/2.2.2/bin/impute2 \
     -m ${map} \
     -h ${haps} \
     -l ${legend} \
