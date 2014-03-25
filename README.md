@@ -6,30 +6,27 @@ Pipeline for running imputation on Beagle.
 
 Image Credit: Bryan Howie here at the Univeristy of Chicago. <http://home.uchicago.edu/~/bhowie/research.html>
 
-## Miscellaneous Notes:
- This imputation pipeline is preliminary and has not been tested. We deceided against prephasing with SHAPEIT2, in order to simplify the overall workflow. Instead, we will allow IMPUTE2 to phase our data.
+## Pilot Project :: Imputation in Mexican Americans
+ This imputation pipeline is preliminary and has not been fully tested. Our initial dataset consisted of ~1,500 samples and ~400,000 SNPs. The reference genome was split into 5mb chunks (ask Jason for script). This repo contains a test script for genegate to make sure that everything ran appropriately.
 
-  All steps with ??? need to have scripts or tools written to perform the function.
+## Parallelization
 
-  It is possible that we have to insert a LiftOver step into the workflow in order to convert data from b36 to b37.
-
-  Have to refine the parallelization scheme.
+ Beagle's uses the Portable Batch System (PBS) for resource management and scheduling.
 
 ## Preprocessing:
   * Split reference by chromosome
   * Split input data by chromosome
-  * match variant IDs
+  * match variant IDs between reference and directly typed variants
 
-## Workflow:
+## Workflow Outline (pilot project specific):
   1. Copy reference and raw data to node.
   2. Convert binary PLINK to PED/map.
   3. GTOOL: Convert PLINK files to CHIAMO format.
-  4. ???: make strand orientation file.
-  5. ???: split chromosome files into genomic blocks.
+  5. split chromosome files into genomic blocks.
     - Each chunk will be submitted to 1 of 24 cores on the node.
   6. IMPUTE2: input 1000genomes reference and block file.
-  7. ???: imputation QC.
-    - Perhaps set an output filter in step 5 to simply ignore low wuality variants.
+  7. Magical imputation QC
+    - Standard imputation quality metric is the multi-locus LD calculated in the reference panel. This quantity is represented in the info column of the IMPUTE2 snp output file.
   8. GTOOL: convert IMPUTE2 output files to PLINK format.
   9. heritability analyses.
 
